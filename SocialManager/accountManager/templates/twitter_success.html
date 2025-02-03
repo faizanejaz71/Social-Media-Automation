@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<h1>Welcome, {{ user.name }}</h1>
+<p>Username: {{ user.screen_name }}</p>
+<p>Followers: {{ user.followers_count }}</p>
+<p><a href="{{ user.url }}" target="_blank">Visit your Twitter profile</a></p>
+{% endblock %}
