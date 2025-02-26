@@ -1,0 +1,44 @@
+{% extends "Sneat/base.html" %} {% load static %} {% block body %}
+
+<form method="post" enctype="multipart/form-data" action="{% url 'upload_csv' %}">
+    {% csrf_token %}
+    <div style="display: flex; justify-content: center; align-items: center; height: 100vh; background-color: #f8f9fa;">
+        <div style="width: 90%; padding: 30px; background: white; box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); border-radius: 12px; text-align: center;margin-top:-130px">
+            <h2 style="margin-bottom: 20px; font-size: 26px; color: #333;">Upload a File</h2>
+
+            <input type="file" id="fileInput" name="csv_file" style="display: none;">
+            <label for="fileInput" 
+                style="display: block; width: 100%; padding: 15px; background-color: #007bff; color: white; 
+                       border-radius: 8px; cursor: pointer; font-size: 16px; font-weight: bold;">
+                Choose File
+            </label>
+
+            <p id="fileName" style="margin-top: 15px; font-size: 16px; color: #555;">No file chosen</p>
+
+            <button type="submit" 
+                style="margin-top: 15px; width: 100%; padding: 15px; background-color: #28a745; color: white; 
+                       border: none; border-radius: 8px; cursor: pointer; font-size: 16px; font-weight: bold;">
+                Upload
+            </button>
+        </div>
+    </div>
+</form>
+
+<script>
+    document.getElementById("fileInput").addEventListener("change", function () {
+        const fileName = this.files.length > 0 ? this.files[0].name : "No file chosen";
+        document.getElementById("fileName").textContent = fileName;
+    });
+
+    function uploadFile() {
+        const fileInput = document.getElementById("fileInput");
+        if (fileInput.files.length > 0) {
+            alert("File selected: " + fileInput.files[0].name);
+            // Add AJAX or Django form submission logic here
+        } else {
+            alert("Please select a file first!");
+        }
+    }
+</script>
+
+{% endblock %}

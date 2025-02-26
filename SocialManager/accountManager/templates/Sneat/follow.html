@@ -1,0 +1,31 @@
+{% extends "Sneat/base.html" %} {% load static %} {% block body %}
+
+
+
+
+<form method="POST" action="{% url 'follow' %}">
+    {% csrf_token %}
+    <label>Enter Twitter Username to Follow:</label>
+    <input type="text" name="target_username" required>
+    <button type="submit">Follow</button>
+</form>
+
+
+<script>
+    document.getElementById("fileInput").addEventListener("change", function () {
+        const fileName = this.files.length > 0 ? this.files[0].name : "No file chosen";
+        document.getElementById("fileName").textContent = fileName;
+    });
+
+    function uploadFile() {
+        const fileInput = document.getElementById("fileInput");
+        if (fileInput.files.length > 0) {
+            alert("File selected: " + fileInput.files[0].name);
+            // Add AJAX or Django form submission logic here
+        } else {
+            alert("Please select a file first!");
+        }
+    }
+  </script>
+
+  {% endblock %}

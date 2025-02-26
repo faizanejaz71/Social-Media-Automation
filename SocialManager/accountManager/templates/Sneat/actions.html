@@ -1,0 +1,274 @@
+{% extends "Sneat/base.html" %} {% load static %} {% block body %}
+
+
+
+
+<div class="row w-100">
+    <div class="col-12">
+        <ul class="nav nav-tabs pt-4 ps-5 mx-1 gap-3" id="myTab" role="tablist">
+          <li class="nav-item" role="presentation">
+            <button class="nav-link px-0 px-1 active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">Follow</button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link px-0 px-1" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">Unfollow</button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link px-0 px-1" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact-tab-pane" type="button" role="tab" aria-controls="contact-tab-pane" aria-selected="false">Tweet</button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link px-0 px-1" id="disabled-tab" data-bs-toggle="tab" data-bs-target="#disabled-tab-pane" type="button" role="tab" aria-controls="disabled-tab-pane" aria-selected="false">Retweet</button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link px-0 px-1" id="like-tab" data-bs-toggle="tab" data-bs-target="#like-tab-pane" type="button" role="tab" aria-controls="like-tab-pane" aria-selected="false">Like</button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link px-0 px-1" id="comment-tab" data-bs-toggle="tab" data-bs-target="#comment-tab-pane" type="button" role="tab" aria-controls="comment-tab-pane" aria-selected="false">Comments</button>
+          </li>
+        </ul>
+        <div class="tab-content" id="myTabContent">
+          <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
+              <div class="card mb-6">
+                  <div class="card-header d-flex align-items-center justify-content-between">
+                  </div>
+                  <div class="card-body">
+                    <form method="POST" action="{% url 'follow' %}">
+                        {% csrf_token %}
+                      <div class="row mb-3">
+                        <label class="col-sm-2 col-form-label" for="target-username">Username </label>
+                        <div class="col-sm-10">
+                          <input type="text" class="form-control" name="target_username" id="target-username" placeholder="Enter target username">
+                        </div>
+                      </div>
+
+                      <!--<div class="row mb-3">-->
+                      <!--  <label class="col-sm-2 col-form-label" for="follow-quantity">Quantity</label>-->
+                      <!--  <div class="col-sm-10">-->
+                      <!--    <input type="number" class="form-control" name="quantity" id="follow-quantity" placeholder="Enter number of follows">-->
+                      <!--  </div>-->
+                      <!--</div>-->
+
+                      <div class="row justify-content-end">
+                        <div class="col-sm-10">
+                          <button type="submit" class="btn btn-primary">Follow</button>
+                        </div>
+                      </div>
+                    </form>
+
+                  </div>
+                </div>
+          </div>
+          <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
+              <div class="card mb-6">
+                  <div class="card-header d-flex align-items-center justify-content-between">
+                  </div>
+                  <div class="card-body">
+                    <form method="POST" action="{% url 'unfollow' %}">
+                        {% csrf_token %}
+                      <div class="row mb-3">
+                        <label class="col-sm-2 col-form-label" for="target_username">Username</label>
+                        <div class="col-sm-10">
+                          <input type="text" class="form-control" name="target_username" id="target-username" placeholder="Enter target username">
+                        </div>
+                      </div>
+
+                      <!--<div class="row mb-3">-->
+                      <!--  <label class="col-sm-2 col-form-label" for="unfollow-quantity">Quantity</label>-->
+                      <!--  <div class="col-sm-10">-->
+                      <!--    <input type="number" class="form-control" name="quantity" id="unfollow-quantity" placeholder="Enter number of unfollows">-->
+                      <!--  </div>-->
+                      <!--</div>-->
+
+                      <div class="row justify-content-end">
+                        <div class="col-sm-10">
+                          <button type="submit" class="btn btn-danger">Unfollow</button>
+                        </div>
+                      </div>
+                    </form>
+
+                  </div>
+                </div>
+          </div>
+          <div class="tab-pane fade" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab" tabindex="0"><div class="card mb-6">
+                  <div class="card-header d-flex align-items-center justify-content-between">
+                  </div>
+                  <div class="card-body">
+                    <form method="POST" action="{% url 'tweet' %}">
+                        {% csrf_token %}
+                      <!--<div class="row mb-3">-->
+                      <!--  <label class="col-sm-2 col-form-label" for="tweet-quantity">Quantity</label>-->
+                      <!--  <div class="col-sm-10">-->
+                      <!--    <input type="number" class="form-control" name="quantity" id="tweet-quantity" placeholder="Enter number of tweets">-->
+                      <!--  </div>-->
+                      <!--</div>-->
+
+                      <div class="row mb-3">
+                        <label class="col-sm-2 col-form-label" for="tweet-message">Tweet Message</label>
+                        <div class="col-sm-10">
+                          <input type="text" class="form-control" name="tweet_text" id="tweet-message" placeholder="Enter your tweet message">
+                        </div>
+                      </div>
+
+                      <!--<div class="row mb-3">-->
+                      <!--  <label class="col-sm-2 col-form-label" for="tweet-file">Upload CSV</label>-->
+                      <!--  <div class="col-sm-10">-->
+                      <!--    <input type="file" class="form-control" name="tweet_file" id="tweet-file" accept=".csv">-->
+                      <!--    <small class="form-text text-muted">Upload a CSV file containing tweets.</small>-->
+                      <!--  </div>-->
+                      <!--</div>-->
+
+                      <div class="row justify-content-end">
+                        <div class="col-sm-10">
+                          <button type="submit" class="btn btn-primary">Tweet</button>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div></div>
+            <div class="tab-pane fade" id="disabled-tab-pane" role="tabpanel" aria-labelledby="disabled-tab" tabindex="0">
+              <div class="card mb-6">
+                  <div class="card-header d-flex align-items-center justify-content-between">
+                  </div>
+                  <div class="card-body">
+                    <form method="POST" action="{% url 'retweet-thoughts' %}">
+                        {% csrf_token %}
+                      <div class="row mb-3">
+                        <label class="col-sm-2 col-form-label" for="tweet_id">Tweet Id</label>
+                        <div class="col-sm-10">
+                          <input type="text" class="form-control" id="tweet_id" name="tweet_id"  placeholder="Tweet ID (e.g., 1234567890)">
+                        </div>
+                      </div>
+
+
+                      <div class="row mb-3">
+                        <label class="col-sm-2 col-form-label" for="comment">Add Thoughts</label>
+                        <div class="col-sm-10">
+                          <input type="text" class="form-control" name="comment" id="thoughts" placeholder="What do you think about this tweet?">
+                        </div>
+                      </div>
+
+
+                      <!--<div class="row mb-3">-->
+                      <!--  <label class="col-sm-2 col-form-label" for="retweet-quantity">Quantity</label>-->
+                      <!--  <div class="col-sm-10">-->
+                      <!--    <input type="number" class="form-control" name="quantity" id="retweet-quantity" placeholder="Enter number of retweets">-->
+                      <!--  </div>-->
+                      <!--</div>-->
+
+
+                      <!--<div class="row mb-3">-->
+                      <!--  <label class="col-sm-2 col-form-label" for="thoughts-file">Upload CSV</label>-->
+                      <!--  <div class="col-sm-10">-->
+                      <!--    <input type="file" class="form-control" name="thoughts_file" id="thoughts-file" accept=".csv">-->
+                      <!--    <small class="form-text text-muted">Upload a CSV file containing thoughts/comments.</small>-->
+                      <!--  </div>-->
+                      <!--</div>-->
+
+                      <div class="row justify-content-end">
+                        <div class="col-sm-10">
+                          <button type="submit" class="btn btn-primary">Retweet</button>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                  {% if messages %}
+                  <div class="alert alert-info mt-4">
+                      {% for message in messages %}
+                      <p>{{ message }}</p>
+                      {% endfor %}
+                  </div>
+                      {% endif %}
+                </div>
+          </div>
+            <div class="tab-pane fade" id="like-tab-pane" role="tabpanel" aria-labelledby="like-tab" tabindex="0">
+              <div class="card mb-6">
+                  <div class="card-header d-flex align-items-center justify-content-between">
+                  </div>
+                  <div class="card-body">
+                    <form method="POST" action="{% url 'like' %}">
+                        {% csrf_token %}
+                      <div class="row mb-3">
+                        <label class="col-sm-2 col-form-label" for="tweet_id">Enter Tweet ID</label>
+                        <div class="col-sm-10">
+                          <input type="text" class="form-control" name="tweet_id" id="post-url" placeholder="Tweet ID (e.g., 1234567890)">
+                        </div>
+                      </div>
+
+                      <!--<div class="row mb-3">-->
+                      <!--  <label class="col-sm-2 col-form-label" for="retweet-quantity">Quantity</label>-->
+                      <!--  <div class="col-sm-10">-->
+                      <!--    <input type="number" class="form-control" name="quantity" id="retweet-quantity" placeholder="Enter number of retweets">-->
+                      <!--  </div>-->
+                      <!--</div>-->
+
+                      <!--<div class="row mb-3">-->
+                      <!--  <label class="col-sm-2 col-form-label" for="thoughts-file">Upload CSV</label>-->
+                      <!--  <div class="col-sm-10">-->
+                      <!--    <input type="file" class="form-control" name="thoughts_file" id="thoughts-file" accept=".csv">-->
+                      <!--    <small class="form-text text-muted">Upload a CSV file containing thoughts/comments.</small>-->
+                      <!--  </div>-->
+                      <!--</div>-->
+
+                      <div class="row justify-content-end">
+                        <div class="col-sm-10">
+                          <button type="submit" class="btn btn-primary">Like</button>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+          </div>
+            <div class="tab-pane fade" id="comment-tab-pane" role="tabpanel" aria-labelledby="comment-tab" tabindex="0">
+              <div class="card mb-6">
+                  <div class="card-header d-flex align-items-center justify-content-between">
+                  </div>
+                  <div class="card-body">
+                    <form method="POST" action="{% url 'comment_on_tweet' %}" %}">
+                        {% csrf_token %}
+                      <div class="row mb-3">
+                        <label class="col-sm-2 col-form-label" for="tweet_id">Tweet Id</label>
+                        <div class="col-sm-10">
+                          <input type="text" class="form-control" id="tweet_id" name="tweet_id"  placeholder="Tweet ID (e.g., 1234567890)">
+                        </div>
+                      </div>
+
+
+                      <div class="row mb-3">
+                        <label class="col-sm-2 col-form-label" for="comment">Comments</label>
+                        <div class="col-sm-10">
+                          <input type="text" class="form-control" name="comment" id="thoughts" placeholder="What do you think about this tweet?">
+                        </div>
+                      </div>
+
+                      <div class="row justify-content-end">
+                        <div class="col-sm-10">
+                          <button type="submit" class="btn btn-primary">Retweet</button>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+          </div>
+
+        </div>
+    </div>
+</div>
+
+
+<script>
+    document.getElementById("fileInput").addEventListener("change", function () {
+        const fileName = this.files.length > 0 ? this.files[0].name : "No file chosen";
+        document.getElementById("fileName").textContent = fileName;
+    });
+
+    function uploadFile() {
+        const fileInput = document.getElementById("fileInput");
+        if (fileInput.files.length > 0) {
+            alert("File selected: " + fileInput.files[0].name);
+            // Add AJAX or Django form submission logic here
+        } else {
+            alert("Please select a file first!");
+        }
+    }
+  </script>
+
+  {% endblock %}

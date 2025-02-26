@@ -1,0 +1,20 @@
+<!-- enter_pin.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Enter PIN Code</title>
+</head>
+<body>
+    <h2>Authorize Twitter Account</h2>
+    <p>Click the link below to authorize your account:</p>
+    <a href="{{ redirect_url }}" target="_blank">Authorize on Twitter</a>
+
+    <form method="post" action="{% url 'twitter_callback' %}">
+    {% csrf_token %}
+    <label for="pin_code">Enter PIN:</label>
+    <input type="text" name="pin_code" required>
+    <button type="submit">Submit</button>
+</form>
+
+</body>
+</html>
